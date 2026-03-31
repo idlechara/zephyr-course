@@ -1,0 +1,6 @@
+{
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "cmake.sourceDirectory": "/workspaces/zephyr-course/app",
+    "python.defaultInterpreterPath": "/home/vscode/zephyrproject/.venv/bin/python",
+    "defaultterminal.integrated.shell.linux": "/bin/zsh"    
+}
