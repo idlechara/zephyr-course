@@ -11,4 +11,6 @@ manifest:
           - hal_nxp
           - hal_stm32
           - hal_nordic
+        # sadly, this entry needs to be relative to the workspace dir. For the case of this 
+        # devcontainer it is /workspaces, thus /workspaces/deps is the place on which the dependencies are stored
         path-prefix: deps

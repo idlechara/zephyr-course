@@ -1,0 +1,11 @@
+menu "Application configuration"
+config LED_BLINKING_PERIOD
+    int "LED blinking period (ms)"
+    default 768
+    help
+        "This is the actual time in millis that each blink period takes. Blablablabla."
+endmenu
+
+menu "Default Zephyr configuration"
+source "Kconfig.zephyr"
+endmenu

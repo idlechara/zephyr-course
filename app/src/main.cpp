@@ -2,8 +2,6 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
-// change: blinks (on-off cycle) the LED every 1000 ms (500 ms on, 500 ms off)
-#define SLEEP_TIME_MS 500
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED_NODE DT_ALIAS(led0)
@@ -25,7 +23,7 @@ int main(void)
 
         led_state = !led_state;
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
-        k_msleep(SLEEP_TIME_MS);
+        k_msleep(CONFIG_LED_BLINKING_PERIOD);
     }
     return 0;
 }
