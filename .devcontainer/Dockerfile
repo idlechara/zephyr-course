@@ -20,7 +20,7 @@ RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
 RUN sudo apt update && sudo apt upgrade -y
 RUN sudo apt install --no-install-recommends git cmake ninja-build gperf \
   ccache dfu-util device-tree-compiler wget python3-dev python3-venv python3-tk \
-  xz-utils file make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1 openocd usbutils -y
+  xz-utils file make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1 openocd usbutils kconfig-frontends -y
 
 COPY ./setup_venv.sh /tmp/setup_venv.sh
 RUN chmod +x /tmp/setup_venv.sh && su vscode -c "/tmp/setup_venv.sh" && rm -f /tmp/setup_venv.sh

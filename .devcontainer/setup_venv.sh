@@ -7,4 +7,5 @@ pip install west
 echo "source /home/vscode/zephyrproject/.venv/bin/activate" >> ~/.zshrc
 echo "source /home/vscode/zephyrproject/.venv/bin/activate" >> ~/.bashrc
 source /home/vscode/zephyrproject/.venv/bin/activate
+sudo mkdir -p /workspaces
 sudo chown vscode:vscode /workspaces

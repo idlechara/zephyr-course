@@ -18,6 +18,9 @@ build-native:
 run: build-native
 	./build/zephyr/zephyr.exe
 
+menuconfig:
+	west build -t menuconfig
+
 clean:
 	rm -rf build
 
