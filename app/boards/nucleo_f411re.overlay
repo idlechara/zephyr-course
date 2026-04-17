@@ -1,0 +1,18 @@
+
+// root node
+/ {
+    // already existing on nucleo_f411re.dts
+    leds {
+        compatible = "gpio-leds";
+        custom_led: custom_led {
+            gpios = <&gpioa 6 GPIO_ACTIVE_HIGH>;
+            label = "Custom LED - Personal testing!";
+        };
+    };
+
+    aliases {
+        // There is no led0 for this board (the existing one is an alias), so we are referencing the reference of led0, which is the green led on the board.
+        app-led = &green_led_2;
+        assignment-3-led = &custom_led; // haha
+    };
+};

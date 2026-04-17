@@ -1,50 +1,64 @@
-menu "LED Subsystem"
-choice LED_BLINKING_TIME_CHOICE
-    bool "LED Sleep time"
+
+config APP_HEARTBEAT_PERIOD_MS
+    int "App heartbeat period (ms)"
+    range 100 2000
+    default 500
+
+config ENABLE_ASSIGNMENT_3_LOGIC
+    bool "Enable Assignment 3 logic"
+    default n
     help
-        "This is the actual time that each blink period takes."
-    config SLEEP_TIME_250_MS
-        bool "250 ms"
-    config SLEEP_TIME_500_MS
-        bool "500 ms"
-    config SLEEP_TIME_1000_MS
-        bool "1000 ms"
-    config SLEEP_TIME_2000_MS
-        bool "2000 ms"
-endchoice
-
-config LED_BLINKING_TIME_MILIS
-    int
-    default 250 if SLEEP_TIME_250_MS
-    default 500 if SLEEP_TIME_500_MS
-    default 1000 if SLEEP_TIME_1000_MS
-    default 2000 if SLEEP_TIME_2000_MS
-
-menu "Advanced Led settings"
-    config LED_BRIGHTNESS
-        int "LED Brightness (0-100)"
-        range 0 100
-        default 100
-    config LED_FADE_DURATION
-        int "LED fade duration (ms)"
-        default 500
-
-    config ENABLE_EXPERT_SETTINGS
-        bool "Enable expert settings"
-        default n
+        "Enable this option to include the logic for Assignment 3, which includes LED blinking and advanced settings. This will also enable a heartbeat thread that blinks the LED at a configurable interval. Requires definition of assignment-3-led on DT"
     
-    # menu "Expert settings" 
-    config ENABLE_LED_DEBUGGING
-        depends on ENABLE_EXPERT_SETTINGS
-        bool "Enable LED debugging"
-        default n
-    config CUSTOM_BLINK_PATTERN
-        depends on ENABLE_EXPERT_SETTINGS
-        string "Custom LED blink pattern"
-        default "101110"
-    # endmenu # End of Expert settings
-endmenu # End of Advanced Led settings
-endmenu 
+menu "Assignment 3 Logic"
+    depends on ENABLE_ASSIGNMENT_3_LOGIC
+    choice LED_BLINKING_TIME_CHOICE
+        bool "LED Sleep time"
+        help
+            "This is the actual time that each blink period takes."
+        config SLEEP_TIME_250_MS
+            bool "250 ms"
+        config SLEEP_TIME_500_MS
+            bool "500 ms"
+        config SLEEP_TIME_1000_MS
+            bool "1000 ms"
+        config SLEEP_TIME_2000_MS
+            bool "2000 ms"
+    endchoice
+
+    config LED_BLINKING_TIME_MILIS
+        int
+        default 250 if SLEEP_TIME_250_MS
+        default 500 if SLEEP_TIME_500_MS
+        default 1000 if SLEEP_TIME_1000_MS
+        default 2000 if SLEEP_TIME_2000_MS
+
+    menu "Advanced Led settings"
+
+        config LED_BRIGHTNESS
+            int "LED Brightness (0-100)"
+            range 0 100
+            default 100
+        config LED_FADE_DURATION
+            int "LED fade duration (ms)"
+            default 500
+
+        config ENABLE_EXPERT_SETTINGS
+            bool "Enable expert settings"
+            default n
+
+        # menu "Expert settings" 
+        config ENABLE_LED_DEBUGGING
+            depends on ENABLE_EXPERT_SETTINGS
+            bool "Enable LED debugging"
+            default n
+        config CUSTOM_BLINK_PATTERN
+            depends on ENABLE_EXPERT_SETTINGS
+            string "Custom LED blink pattern"
+            default "101110"
+        # endmenu # End of Expert settings
+    endmenu # End of Advanced Led settings
+endmenu # End of Assignment 3 Logic
 
 menu "Default Zephyr configuration"
     source "Kconfig.zephyr"
