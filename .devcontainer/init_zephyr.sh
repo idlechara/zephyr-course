@@ -8,6 +8,7 @@ if [ ! -d ../.west ]; then
     west zephyr-export
     west packages pip --install
     west sdk install
+    west sdk install --toolchains arm-zephyr-eabi 
 else
     echo "Zephyr workspace already initialized. Skipping initialization."
 fi

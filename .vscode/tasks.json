@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "gdbserver: start",
+            "type": "shell",
+            "command": "make gdbserver-de-cero",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Open On-Chip Debugger",
+                    "endsPattern": "Listening on port 3333"
+                }
+            },
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "gdbserver: stop",
+            "type": "shell",
+            "command": "pkill -f 'openocd' || true",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "never"
+            }
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//workspaces/deps/zephyr/dts/arm/st/f4/**)",
+      "Read(//workspaces/deps/**)"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+board:
+  name: de_cero
+  full_name: LA-NUCLEO (copia de F411RE, pero ahora desde cero)
+  vendor: idlechara
+  socs:
+    - name: stm32f411xe

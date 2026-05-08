@@ -14,6 +14,7 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 int main(void)
 {
+    printk("Entered main!!\n");
     bool led_state = true;
 
     if (!gpio_is_ready_dt(&led)) return 0;

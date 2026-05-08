@@ -16,14 +16,19 @@
 				"ms-vscode.cpptools",
 				"ms-vscode.cpp-devtools",
 				"ms-vscode.cpptools-extension-pack",
-				"ms-vscode.cmake-tools"
+				"ms-vscode.cmake-tools",
+				"marus25.cortex-debug",
+				"Arm.device-manager",
+				"nordic-semiconductor.nrf-devicetree"
 			]
 		}
 	},
 	"runArgs": [
         "--privileged",
         "-v",
-        "/dev/bus/usb:/dev/bus/usb"
+        "/dev/bus/usb:/dev/bus/usb",
+		"-v",
+		"/dev/ttyACM0:/dev/ttyACM0"
     ]
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
