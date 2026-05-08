@@ -1,0 +1,12 @@
+# LA-NUCLEO board configuration
+
+# Copyright (c) 2016 Matthias Boesl
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_LA_NUCLEO
+
+config SPI_STM32_INTERRUPT
+	default y
+	depends on SPI
+
+endif # BOARD_LA_NUCLEO

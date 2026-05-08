@@ -9,7 +9,13 @@ init:
 build-nucleo:
 	west build -p always -b nucleo_f411re app
 
+build-la-nucleo:
+	west build -p always -b la_nucleo app
+
 flash: build-nucleo
+	west flash --runner openocd
+
+flash-la-nucleo: build-la-nucleo
 	west flash --runner openocd
 
 build-native:
