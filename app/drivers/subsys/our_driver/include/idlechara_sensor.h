@@ -9,11 +9,11 @@
 extern "C"{
 #endif
 
-__subsystem struct idlechara_sensor_driver_api {
-    int (*sample_fetch)(const struct device* dev,  enum sensor_channel chan);
-    int (*channel_get)(const  struct device* dev, enum sensor_channel chan, struct sensor_value *val);
-};
 
+struct  idlechara_sensor_driver_api{
+    struct sensor_driver_api sensor;
+    int (*set_data)(const struct device* dev, int data);
+};
 // even better
 
 // __subsystem struct idlechara_sensor_api {
@@ -31,10 +31,13 @@ struct idlechara_sensor_data {
 
 
 static inline int idlechara_sensor_sample_fetch(const struct device* dev, enum sensor_channel chan){
-    return DEVICE_API_GET(idlechara_sensor, dev)->sample_fetch(dev, chan);
+    return ((const struct idlechara_sensor_driver_api *)dev->api)->sensor.sample_fetch(dev, chan);
 };
 static inline int idlechara_sensor_channel_get(const struct device* dev, enum sensor_channel chan, struct sensor_value *val){
-    return DEVICE_API_GET(idlechara_sensor, dev)->channel_get(dev, chan, val);
+    return ((const struct idlechara_sensor_driver_api *)dev->api)->sensor.channel_get(dev, chan, val);
+}
+static inline int idlechara_sensor_set_data(const struct device* dev, int data){
+    return ((const struct idlechara_sensor_driver_api *)dev->api)->set_data(dev,data);
 }
 
 

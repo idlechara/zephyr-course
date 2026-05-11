@@ -34,9 +34,11 @@ int main(void)
             k_msleep(SLEEP_TIME_MS);    
             continue;
         }
-        LOG_INF("get done - led is off!");
+        LOG_INF("get done - led is off! ticks?=%d", val.val1);
         k_msleep(SLEEP_TIME_MS);
 
+        // the  special function!
+        idlechara_sensor_set_data(my_sensor, ++val.val1);
     }
     return 0;
 }

@@ -53,9 +53,19 @@ static int idlechara_sensor_channel_get_impl(const struct device* dev, enum sens
 };
 
 
-static DEVICE_API(sensor, idlechara_sensor_driver_api)  = {
-    .channel_get = idlechara_sensor_channel_get_impl,
-    .sample_fetch = idlechara_sensor_sample_fetch_impl,
+static int idlechara_sensor_set_data_impl(const struct device* dev, int data) {
+    const struct idlechara_sensor_config *config = dev->config;
+    struct idlechara_sensor_data *d = dev->data;
+    d->state = data;
+};
+
+
+static const struct idlechara_sensor_driver_api idlechara_api  = {
+    .sensor = {
+        .channel_get = idlechara_sensor_channel_get_impl,
+        .sample_fetch = idlechara_sensor_sample_fetch_impl,
+    },
+    .set_data = idlechara_sensor_set_data_impl,
 };
 
 
@@ -68,6 +78,6 @@ static DEVICE_API(sensor, idlechara_sensor_driver_api)  = {
     DEVICE_DT_INST_DEFINE(n, idlechara_sensor_init, NULL,                  \
         &idlechara_sensor_data_##n, &idlechara_sensor_config_##n,                \
         POST_KERNEL, CONFIG_GPIO_INIT_PRIORITY,                      \
-        &idlechara_sensor_driver_api);
+        &idlechara_api);
 
 DT_INST_FOREACH_STATUS_OKAY(IDLECHARA_SENSOR_DEFINE)
