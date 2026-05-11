@@ -19,7 +19,8 @@
 				"ms-vscode.cmake-tools",
 				"marus25.cortex-debug",
 				"Arm.device-manager",
-				"nordic-semiconductor.nrf-devicetree"
+				"nordic-semiconductor.nrf-devicetree",
+				"MermaidChart.vscode-mermaid-chart"
 			]
 		}
 	},

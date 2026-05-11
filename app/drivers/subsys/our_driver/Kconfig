@@ -1,12 +1,6 @@
-menuconfig OUR_DRIVER
-    bool "Enable our driver"
-    select GPIO
-    depends on DT_HAS_OUR_DRIVER_ENABLED
+menuconfig IDLECHARA_SENSOR
+    bool "Enable idlechara's sensor driver"
+    select SENSOR
+    depends on DT_HAS_IDLECHARA_SENSOR_ENABLED
     help
       THE BEST DRIVER THAT's EVER EXISTED @__@
-
-if OUR_DRIVER
-config OUR_DRIVER_INIT_STATE
-    bool "Start as high"
-    default n
-endif

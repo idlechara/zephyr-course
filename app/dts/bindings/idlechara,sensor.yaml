@@ -1,5 +1,5 @@
 description: My cool sensor
-compatible: our,driver
+compatible: idlechara,sensor
 include: base.yaml
 
 properties:

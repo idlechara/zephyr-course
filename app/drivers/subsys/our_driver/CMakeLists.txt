@@ -1,4 +1,4 @@
-if(CONFIG_OUR_DRIVER)
-    target_sources(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/our_driver.c)
+if(CONFIG_IDLECHARA_SENSOR)
+    target_sources(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/idlechara_sensor.c)
 endif()
 zephyr_include_directories(include)
