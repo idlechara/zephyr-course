@@ -1,5 +1,5 @@
 description: My cool sensor
-compatible: our,sensor
+compatible: our,driver
 include: base.yaml
 
 properties:
