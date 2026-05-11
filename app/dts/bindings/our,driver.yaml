@@ -1,0 +1,10 @@
+description: My cool sensor
+compatible: our,sensor
+include: base.yaml
+
+properties:
+  pin:
+    type: phandle-array
+    specifier-space: gpio
+    required: true
+    description: pin connected

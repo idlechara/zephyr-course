@@ -1,0 +1,5 @@
+rsource "drivers/subsys/our_driver/Kconfig"
+
+menu "Default Zephyr configuration"
+    source "Kconfig.zephyr"
+endmenu

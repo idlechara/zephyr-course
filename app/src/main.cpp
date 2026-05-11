@@ -1,31 +1,24 @@
-#include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <our_driver.h>
 
-// change: blinks (on-off cycle) the LED every 1000 ms (500 ms on, 500 ms off)
 #define SLEEP_TIME_MS 500
 
-/* The devicetree node identifier for the "led0" alias. */
-#define LED_NODE DT_ALIAS(led0)
-
-static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
+static const struct device *our_device = DEVICE_DT_GET_ANY(our_driver);
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 int main(void)
 {
-    printk("Entered main!!\n");
     bool led_state = true;
 
-    if (!gpio_is_ready_dt(&led)) return 0;
-
-    if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
-
+    if(!device_is_ready(our_device)){
+        return 0;
+    }
     while (1) {
-        if (gpio_pin_toggle_dt(&led) < 0) return 0;
-
         led_state = !led_state;
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
+        our_driver_set_state(our_device, led_state);
+        LOG_INF("LED state - new : %s", led_state ? "ON" : "OFF");
         k_msleep(SLEEP_TIME_MS);
     }
     return 0;

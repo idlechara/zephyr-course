@@ -1,6 +1,11 @@
 {
-    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
-    "cmake.sourceDirectory": "/workspaces/zephyr-course/app",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/app/build/compile_commands.json",
     "python.defaultInterpreterPath": "/home/vscode/zephyrproject/.venv/bin/python",
-    "defaultterminal.integrated.shell.linux": "/bin/zsh"    
+    "cmake.sourceDirectory": "/workspaces/zephyr-course/app",
+    "cmake.configureArgs": [
+        "-DBOARD=de_cero"
+    ],
+    "nrf-connect.applications": [
+        "${workspaceFolder}/app"
+    ]
 }

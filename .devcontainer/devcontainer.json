@@ -25,12 +25,13 @@
 	},
 	"runArgs": [
         "--privileged",
-        "-v",
-        "/dev/bus/usb:/dev/bus/usb",
-		"-v",
-		"/dev/ttyACM0:/dev/ttyACM0"
-    ]
-
+        "-v", "/dev/bus/usb:/dev/bus/usb",
+        "-v", "/dev/ttyACM0:/dev/ttyACM0"
+    ],
+    // "preStartCommand": "sudo chmod 666 /dev/null /dev/zero /dev/full /dev/random /dev/urandom /dev/tty"
+	
+	
+	// "postStartCommand": "sudo chmod 666 /dev/null /dev/zero /dev/full /dev/random /dev/urandom /dev/tty"
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 

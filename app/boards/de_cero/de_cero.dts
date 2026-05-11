@@ -13,6 +13,11 @@
 		zephyr,flash = &flash0;
 	};
 
+	our_driver:our_driver{
+		compatible="our,driver";	
+		pin =  <&gpioa 5 GPIO_ACTIVE_HIGH>;
+	};
+
 	leds: leds {
 		compatible = "gpio-leds";
 
@@ -24,6 +29,7 @@
 
 	aliases {
 		led0 = &led_feo;
+		ledcito = &our_driver;
 	};
 };
 

@@ -5,3 +5,5 @@ build
 .west
 deps
 .cache
+
+app/build

@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "compileCommands": [
+                "${workspaceFolder}/app/build/compile_commands.json"
+            ],
+            "includePath": [
+                "${workspaceFolder}/app/**",
+                "${workspaceFolder}/build/zephyr/include/generated",
+                "${workspaceFolder}/build/zephyr/include/generated/zephyr",
+                "/workspaces/deps/zephyr/include",
+                "/workspaces/deps/zephyr/include/zephyr",
+                "/workspaces/deps/zephyr/lib/libc/common/include",
+                "/workspaces/deps/zephyr/modules/cmsis"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/build/zephyr/include/generated/zephyr/autoconf.h"
+            ],
+            "defines": [
+                "__ZEPHYR__=1",
+                "KERNEL",
+                "STM32F411xE"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
