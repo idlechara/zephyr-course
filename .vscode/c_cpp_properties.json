@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "App",
+            "compileCommands": [
+                "${workspaceFolder}/app/build/compile_commands.json"
+            ],
+            "intelliSenseMode": "linux-gcc-arm",
+            "includePath": [
+                "${default}",
+                "${workspaceFolder}/app/modules/ring_buf/include"
+            ]
+        },
+        {
+            "name": "Test: ring_buf",
+            "compileCommands": [
+                "${workspaceFolder}/tests/ring_buf/build/compile_commands.json"
+            ],
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
