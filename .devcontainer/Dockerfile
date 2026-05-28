@@ -1,0 +1,26 @@
+FROM mcr.microsoft.com/devcontainers/cpp:2-ubuntu24.04
+
+ARG REINSTALL_CMAKE_VERSION_FROM_SOURCE="none"
+
+# Optionally install the cmake for vcpkg
+COPY ./reinstall-cmake.sh /tmp/
+
+RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
+        chmod +x /tmp/reinstall-cmake.sh && /tmp/reinstall-cmake.sh ${REINSTALL_CMAKE_VERSION_FROM_SOURCE}; \
+    fi \
+    && rm -f /tmp/reinstall-cmake.sh
+
+# [Optional] Uncomment this section to install additional vcpkg ports.
+# RUN su vscode -c "${VCPKG_ROOT}/vcpkg install <your-port-name-here>"
+
+# [Optional] Uncomment this section to install additional packages.
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
+
+RUN sudo apt update && sudo apt upgrade -y
+RUN sudo apt install --no-install-recommends git cmake ninja-build gperf \
+  ccache dfu-util device-tree-compiler wget python3-dev python3-venv python3-tk \
+  xz-utils file make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1 openocd usbutils -y
+
+COPY ./setup_venv.sh /tmp/setup_venv.sh
+RUN chmod +x /tmp/setup_venv.sh && su vscode -c "/tmp/setup_venv.sh" && rm -f /tmp/setup_venv.sh
