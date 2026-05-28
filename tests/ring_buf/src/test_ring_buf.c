@@ -149,3 +149,42 @@ ZTEST(ring_buf_boundaries, test_is_full_after_fill)
 	zassert_true(rb_is_full(), "Buffer should be full after pushing 4 values");
 	zassert_equal(rb_count(), 4, "Buffer count should be 4 after pushing 4 values");
 }
+
+// Extra test suite to increase coverage
+ZTEST_SUITE(ring_buf_capacity, NULL, NULL, NULL, NULL, NULL);
+
+ZTEST(ring_buf_capacity, test_init_negative_capacity)
+{
+	zassert_equal(rb_init(-4), -EINVAL, "Initialization with negative capacity should fail with -EINVAL");
+}
+
+ZTEST(ring_buf_capacity, test_init_zero_capacity)
+{
+	zassert_equal(rb_init(0), -EINVAL, "Initialization with zero capacity should fail with -EINVAL");
+}
+
+ZTEST(ring_buf_capacity, test_init_exceeds_max_capacity)
+{
+	//damm this was dirty...
+	zassert_equal(rb_init(RING_BUF_MAX_CAPACITY+1), -EINVAL, "Initialization with capacity exceeding max should fail with -EINVAL");
+}
+
+ZTEST(ring_buf_capacity, test_pop_when_empty)
+{
+	int v;
+	zassert_ok(rb_init(4), "Initialization should succeed");
+	zassert_equal(rb_pop(&v), -ENODATA, "Pop from empty buffer should fail with -ENODATA");
+}
+
+ZTEST(ring_buf_capacity, test_peek_with_null_pointer)
+{
+	zassert_ok(rb_init(4), "Initialization should succeed");
+	zassert_equal(rb_peek(NULL), -EINVAL, "Peek with NULL pointer should fail with -EINVAL");
+}
+
+ZTEST(ring_buf_capacity, test_peek_when_empty)
+{
+	int v;
+	zassert_ok(rb_init(4), "Initialization should succeed");
+	zassert_equal(rb_peek(&v), -ENODATA, "Peek from empty buffer should fail with -ENODATA");
+}

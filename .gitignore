@@ -6,4 +6,5 @@ build
 deps
 .venv
 venv
-twister*
+twister-out/*/
+!twister-out/coverage
